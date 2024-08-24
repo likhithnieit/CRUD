@@ -54,9 +54,9 @@ public class ClientsRepository {
 
     }
     public Client getClient(String email){
-        String sql = "SELECT * from clients WHERE id="+email;
+        String sql = "SELECT * from clients WHERE email=?";
 
-        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql,email);
         if (rows.next()){
             Client client = new Client();
             client.setId(rows.getInt("id"));
@@ -74,7 +74,7 @@ public class ClientsRepository {
     }
 
     public Client createClient(Client client){
-        String sql = "INSERT INTO client (firstname, lastname, " +
+        String sql = "INSERT INTO clients (firstname, lastname, " +
                 "email, phone, address, created_at) VALUES (?,?,?,?,?,?)";
         int count = jdbcTemplate.update(sql,client.getFirstName(),client.getLastName(),client.getEmail(),
         client.getPhone(),client.getAddress(),client.getCreatedAt());
