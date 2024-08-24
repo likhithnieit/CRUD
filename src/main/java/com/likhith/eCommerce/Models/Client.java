@@ -2,13 +2,13 @@ package com.likhith.eCommerce.Models;
 
 public class Client {
 
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phone;
-    private String address;
-    private String createdAt;
+     private int id;
+     private String firstName;
+     private String lastName;
+     private String email;
+     private String phone;
+     private String address;
+     private String createdAt;
 
     public int getId() {
         return id;

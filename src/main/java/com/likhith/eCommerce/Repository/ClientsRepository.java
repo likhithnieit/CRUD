@@ -83,8 +83,22 @@ public class ClientsRepository {
             int id = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()",Integer.class);
             return getClient(id);
         }
-
         return null;
     }
+
+    public Client updateClient(Client client){
+        String sql = "UPDATE clients SET id=?, firstname=?, lastname=?, email=?," +
+                " phone=?, address=?, created_at=? ";
+        jdbcTemplate.update(sql,client.getId(),client.getFirstName(),client.getLastName(),client.getEmail()
+        ,client.getPhone(),client.getCreatedAt());
+
+        return getClient(client.getId());
+    }
+
+    public void deleteClient(int id){
+        String sql = "DELETE FROM clients WHERE id=?";
+        jdbcTemplate.update(sql,id);
+    }
+
 
 }
