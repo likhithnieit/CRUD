@@ -87,10 +87,10 @@ public class ClientsRepository {
     }
 
     public Client updateClient(Client client){
-        String sql = "UPDATE clients SET id=?, firstname=?, lastname=?, email=?," +
-                " phone=?, address=?, created_at=? ";
-        jdbcTemplate.update(sql,client.getId(),client.getFirstName(),client.getLastName(),client.getEmail()
-        ,client.getPhone(),client.getCreatedAt());
+        String sql = "UPDATE clients SET firstname=?, lastname=?, email=?," +
+                " phone=?, address=?, created_at=? WHERE id=?";
+        jdbcTemplate.update(sql,client.getFirstName(),client.getLastName(),client.getEmail(),
+                client.getPhone(),client.getAddress(),client.getCreatedAt(),client.getId());
 
         return getClient(client.getId());
     }
